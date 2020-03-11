@@ -33,6 +33,7 @@ state = {
 ACTIONS:
 
 BABY_ADDED 
+BABY_SELECTED
 EVENT_ADDED
 EVENT_DELETED
 
@@ -81,7 +82,7 @@ const eventById = (state = {}, action) => {
                 [action.payload.id] : action.payload
              };
         }
-        case 'C': {
+        case 'EVENT_DELETED': {
             return omit(state, action.payload.id);
         }
         default: {
