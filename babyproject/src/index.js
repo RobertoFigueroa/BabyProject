@@ -3,6 +3,8 @@ import forEach from 'lodash/forEach';
 import omit from 'lodash/omit';
 import pull from 'lodash/pull';
 import { createStore, combineReducers, getState } from 'redux';
+
+
 /*
 state = {
     babies : {
@@ -79,7 +81,7 @@ const eventById = (state = {}, action) => {
                 [action.payload.id] : action.payload
              };
         }
-        case 'EVENT_DELETED': {
+        case 'C': {
             return omit(state, action.payload.id);
         }
         default: {
