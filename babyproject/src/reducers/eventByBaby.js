@@ -1,6 +1,6 @@
 import pull from 'lodash/pull';
 import * as types from '../types/event';
-import eventById from './event';
+
 
 const eventByBabyId = (state = {}, action) => {
     switch(action.type){
@@ -19,6 +19,6 @@ const eventByBabyId = (state = {}, action) => {
     }
 }
 
-export default eventById;
+export default eventByBabyId;
 
 export const getEvents = (state, babyId) => state.eventByBabyId[babyId];
