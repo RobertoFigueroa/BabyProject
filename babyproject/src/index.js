@@ -23,10 +23,10 @@ state = {
                 date: 01/01/20,
             }
         },
+    }
     byBabyId: {
             3924NFSA832: [FJEF9832]
         }
-    }
 }
 ACTIONS:
 

@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../actions/baby';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button} from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import './styles.css';
 
 const CreateBabyForm = ({ onSubmit }) => {
     const [value1, changeValue1] = useState('');
@@ -12,29 +13,32 @@ const CreateBabyForm = ({ onSubmit }) => {
     return (
 
         <Fragment>
-            <div className='container'>
-                <input
-                    type="text"
-                    placeholder="Nombre"
-                    value={value1}
-                    onChange={e => changeValue1(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Apellido"
-                    value={value2}
-                    onChange={e => changeValue2(e.target.value)}
-                />
-                <button
-                    type="submit"
-                    onClick={() => 
-                        onSubmit(value1,value2)
-                    }>
-                        {'Añadir'}
-                </button>
-            </div>
-
-            
+                        <Card bg='light'>
+                            <Form>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Nombre"
+                                        value={value1}
+                                        onChange={e => changeValue1(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Apellido"
+                                        onChange={e=>changeValue2(e.target.value)}
+                                        value={value2}
+                                        
+                                    />
+                                </Form.Group>
+                                <Button  block='true' variant="primary" type="submit" onClick={
+                                    () => onSubmit(value1,value2)
+                                }>
+                                    Crear
+                                </Button>
+                            </Form>
+                        </Card>
         </Fragment>
     );
 };
