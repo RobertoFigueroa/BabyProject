@@ -22,5 +22,7 @@ export default eventById;
 
 export const getEvent = (state, id) => state.eventById[id];
 
+export const getEvents = (state) => state;
+
 
 

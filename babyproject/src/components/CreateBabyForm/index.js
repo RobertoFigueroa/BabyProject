@@ -32,7 +32,7 @@ const CreateBabyForm = ({ onSubmit }) => {
                                         
                                     />
                                 </Form.Group>
-                                <Button  block='true' variant="primary" type="submit" onClick={
+                                <Button  block='true' variant="primary" onClick={
                                     () => onSubmit(value1,value2)
                                 }>
                                     Crear
@@ -47,7 +47,9 @@ export default connect(
     undefined,
     dispatch => ({
         onSubmit(value1,value2) {
-            dispatch(actions.addBaby(uuidv4(), value1,value2))
+            const id = uuidv4()
+            dispatch(actions.addBaby(id, value1,value2))
+            dispatch(actions.selectBaby(id))
         }
     })
 )(CreateBabyForm);

@@ -1,41 +1,57 @@
 import { v4 as uuidv4 } from 'uuid';
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { moment } from 'moment';
 
+import * as selectors from '../../reducers';
 import * as actions from '../../actions/event';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Row, Dropdown, Button} from 'react-bootstrap';
+import {Container, Row, Dropdown, Button, Form} from 'react-bootstrap';
 
+const EVENTS = [
+    "--Seleccione una opción--",
+    "Cambio de pañal (Pipi)",
+    "Cambio de pañal (Popo)",
+    "Pacha",
+    "Pecho",
+    "Siesta"
+];
 
-//items son los nombres de los bebes [[id,nombres]]
-const searchBar = ({ onClick, onSelected, items}) => {
+const SideMenu = ({ onClick, selectedBabyId}) => {
+    const [notes, changeValue] = useState('');
+    const [eventType, changeEventType] = useState('');
     return (
         <Fragment>
             <Container>
                 <Row>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic1">
-                            Babies
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {items.map(
-                                item => <Dropdown.Item
-                                    key={item[0]}
-                                    value={item[1]}
-                            >{item[1]}</Dropdown.Item>
-                            )}
-                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Creacion de un nuevo evento</Form.Label>
+                    <Form.Control 
+                    value={eventType}
+                    onChange={e => changeEventType(e.target.value)}
+                    as="select">
+                    {
+                        EVENTS.map((event,i)=> <option key={i} value={event}>{event}</option>)
+                    }
+                    </Form.Control>
+                </Form.Group>
+                </Row>
+                <Row>
+                <Form.Group controlId="Form.notes">
+                    <Form.Label>Notes</Form.Label>
+                    <Form.Control 
+                    value={notes} 
+                    as="textarea" 
+                    rows="3" 
+                    onChange={e => changeValue(e.target.value)}/>
+                </Form.Group>
                 </Row>
                 <Row>
                     <Button
                         variant="outline-primary"
-                        onClick={onClick}
+                        onClick={onClick(uuidv4(), selectedBabyId, notes, eventType, Date())}
                     >
-                    {'+'}
+                    {'Crear'}
                     </Button>
                 </Row>
             </Container>
@@ -44,4 +60,14 @@ const searchBar = ({ onClick, onSelected, items}) => {
 };
 
 
-export default searchBar;
+export default connect(
+    state => ({
+        selectedBabyId: selectors.getSelectedBaby(state),
+    }),
+    dispatch => ({
+        onClick(id,babyId,notes,eventType,date){
+            dispatch(actions.addEvent(id, babyId, eventType, notes, date))
+        }
+    })
+)(SideMenu);
+

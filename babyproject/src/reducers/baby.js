@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import * as types from '../types/baby';
 
+
 const babyById = (state={}, action) => {
     switch(action.type){
         case types.BABY_ADDED: {
@@ -50,3 +51,4 @@ export const getBaby = (state, id) => state.babyById[id];
 export const getBabies = state => state.orderBaby.map(
     id => getBaby(state,id)
 ).filter(baby => baby != null);
+export const getSelectedBaby = (state) => state.selectBaby

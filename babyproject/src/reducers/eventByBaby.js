@@ -21,4 +21,4 @@ const eventByBabyId = (state = {}, action) => {
 
 export default eventByBabyId;
 
-export const getEvents = (state, babyId) => state.eventByBabyId[babyId];
+export const getEventsByBaby = (state, babyId) => state.eventByBabyId[babyId];

@@ -2,23 +2,34 @@ import { v4 as uuidv4 } from 'uuid';
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../actions/event';
+import * as actions from '../../actions/baby';
+import * as selectors from '../../reducers';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card} from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 
-const eventCard = ({ onDelete, name, notes, date}) => {
+
+const SearchBar = ({ babies,onSelectedBaby }) => {
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Title>{name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{payload.date}</Card.Subtitle>
-                <Card.Text>{notes}</Card.Text>
-                <Card.Text>{date}</Card.Text>
-                <Card.Link onClick={onDelete}>Delete</Card.Link>
-            </Card.Body>
-        </Card>       
+        <Fragment>
+            <Form.Group controlId="Form.SearchBar">
+                <Form.Label>Seleccione a un bebe</Form.Label>
+                <Form.Control onChange={e => onSelectedBaby(e.target.value)} as="select">
+        
+                {babies.map((baby) => <option value={baby.id} key={baby.id}>{baby.name + ' ' + baby.lastName}</option>)}
+                </Form.Control>
+            </Form.Group>
+        </Fragment>
     );
 };
 
 
-export default eventCard;
+export default connect(
+    state => ({
+        babies: selectors.getBabies(state)
+    }),
+    dispatch => ({
+        onSelectedBaby(id){
+            dispatch(actions.selectBaby(id));
+        }
+    })
+)(SearchBar);
