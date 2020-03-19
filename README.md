@@ -25,8 +25,9 @@ yarn install
 
 #### Vista Registro de evento de un bebe e información de eventos registrados
 
-![](babyproject/img/eventAdded.png)
+![](babyproject/img/eventview.png)
 
 #### Evento registrado
 
-![](babyproject/img/eventview.png)
+![](babyproject/img/eventAdded.png)
+
