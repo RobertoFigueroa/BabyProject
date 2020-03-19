@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../actions/baby';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import './styles.css';
 
 const CreateBabyForm = ({ onSubmit }) => {
@@ -49,7 +49,7 @@ export default connect(
         onSubmit(value1,value2) {
             const id = uuidv4()
             dispatch(actions.addBaby(id, value1,value2))
-            dispatch(actions.selectBaby(id))
+            
         }
     })
 )(CreateBabyForm);

@@ -6,7 +6,7 @@ import * as selectors from '../../reducers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card} from 'react-bootstrap';
 
-const eventCard = ({ 
+const EventCard = ({ 
     onDelete, 
     payload,
     selectedBabyId
@@ -18,7 +18,8 @@ const eventCard = ({
                     <Card.Title>{payload.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{payload.date}</Card.Subtitle>
                     <Card.Text>{payload.notes}</Card.Text>
-                    <Card.Link onClick={onDelete(selectedBabyId)}>Delete</Card.Link>
+                    <Card.Link onClick={
+                        () => onDelete(selectedBabyId)}>Delete</Card.Link>
                 </Card.Body>
             </Card> 
         </Fragment>      
@@ -36,5 +37,5 @@ export default connect(
             dispatch(actions.deleteEvent(id, selectedBabyId));
         }
     })
-)(eventCard);
+)(EventCard);
 

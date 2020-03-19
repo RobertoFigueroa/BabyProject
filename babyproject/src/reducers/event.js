@@ -20,7 +20,7 @@ const eventById = (state = {}, action) => {
 
 export default eventById;
 
-export const getEvent = (state, id) => state.eventById[id];
+export const getEvent = (state, id) => state[id];
 
 export const getEvents = (state) => state;
 

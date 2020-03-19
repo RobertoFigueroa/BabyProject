@@ -1,12 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { moment } from 'moment';
 
 import * as selectors from '../../reducers';
 import * as actions from '../../actions/event';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Row, Dropdown, Button, Form} from 'react-bootstrap';
+import {Container, Row, Button, Form} from 'react-bootstrap';
 
 const EVENTS = [
     "--Seleccione una opción--",
@@ -17,7 +16,7 @@ const EVENTS = [
     "Siesta"
 ];
 
-const SideMenu = ({ onClick, selectedBabyId}) => {
+const SideMenu = ({ createBaby, selectedBabyId}) => {
     const [notes, changeValue] = useState('');
     const [eventType, changeEventType] = useState('');
     return (
@@ -49,7 +48,8 @@ const SideMenu = ({ onClick, selectedBabyId}) => {
                 <Row>
                     <Button
                         variant="outline-primary"
-                        onClick={onClick(uuidv4(), selectedBabyId, notes, eventType, Date())}
+                        onClick={
+                            () => createBaby(uuidv4(), selectedBabyId, notes, eventType, Date())}
                     >
                     {'Crear'}
                     </Button>
@@ -65,7 +65,7 @@ export default connect(
         selectedBabyId: selectors.getSelectedBaby(state),
     }),
     dispatch => ({
-        onClick(id,babyId,notes,eventType,date){
+        createBaby(id,babyId,notes,eventType,date){
             dispatch(actions.addEvent(id, babyId, eventType, notes, date))
         }
     })

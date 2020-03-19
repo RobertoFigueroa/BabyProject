@@ -21,4 +21,14 @@ const eventByBabyId = (state = {}, action) => {
 
 export default eventByBabyId;
 
-export const getEventsByBaby = (state, babyId) => state.eventByBabyId[babyId];
+export const getEventsByBaby = (state, babyId) => {
+    if(babyId === null){
+        return [];
+    }
+    else if(state[babyId] === undefined){
+        return [];
+    }
+    else {
+        return state[babyId];
+    }
+}

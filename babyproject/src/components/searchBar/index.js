@@ -1,5 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions/baby';
@@ -30,6 +29,7 @@ export default connect(
     dispatch => ({
         onSelectedBaby(id){
             dispatch(actions.selectBaby(id));
+            console.log(id)
         }
     })
 )(SearchBar);
