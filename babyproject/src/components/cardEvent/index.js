@@ -1,10 +1,10 @@
-import React, { useState, Fragment } from 'react';
+import React, {  Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions/event';
 import * as selectors from '../../reducers';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card} from 'react-bootstrap';
+import {Card, Alert} from 'react-bootstrap';
 
 const EventCard = ({ 
     onDelete, 
@@ -18,8 +18,8 @@ const EventCard = ({
                     <Card.Title>{payload.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{payload.date}</Card.Subtitle>
                     <Card.Text>{payload.notes}</Card.Text>
-                    <Card.Link onClick={
-                        () => onDelete(selectedBabyId)}>Delete</Card.Link>
+                    <Alert.Link onClick={
+                        () => onDelete(selectedBabyId)}>Delete</Alert.Link>
                 </Card.Body>
             </Card> 
         </Fragment>      
