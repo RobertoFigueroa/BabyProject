@@ -21,12 +21,12 @@ yarn install
 
 #### Vista Registro de un bebe
 
-![](img/addBaby.png)
+![](BabyProject/img/addBaby.png)
 
 #### Vista Registro de evento de un bebe e información de eventos registrados
 
-![](img/eventAdded.png)
+![](BabyProject/img/eventAdded.png)
 
 #### Evento registrado
 
-![](img/eventview.png)
+![](BabyProject/img/eventview.png)
